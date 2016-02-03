@@ -11,14 +11,14 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 
 ## Relevant links
 
-- https://github.com/segmentio/nightmare
+- https://github.com/exupero/saveSvgAsPng
+- https://github.com/tmpvar/jsdom
 - https://www.npmjs.com/package/svg2png
-https://www.smashingmagazine.com/2014/05/love-generating-svg-javascript-move-to- -server/
-- http://fabricjs.com/
+- https://github.com/segmentio/nightmare
 - https://github.com/TooTallNate/node-data-uri-to-buffer
 - https://github.com/Automattic/node-canvas
-- https://github.com/tmpvar/jsdom
-- https://github.com/exupero/saveSvgAsPng
+- http://fabricjs.com/
+- https://www.smashingmagazine.com/2014/05/love-generating-svg-javascript-move-to-server/
 
 ## Last findings
 
