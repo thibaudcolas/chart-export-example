@@ -16,20 +16,12 @@ vo(function*() {
 
             window.dataURIs = {};
 
-            window.svgAsPngUri(chart, {}, (uri) => {
-                window.dataURIs.png = uri;
-                document.write('<noscript id="datauri-png"></noscript>');
-            });
-
-            window.svgAsDataUri(chart, {}, (uri) => {
-                window.dataURIs.svg = uri;
-                document.write('<noscript id="datauri-svg"></noscript>');
-            });
+            window.svgAsPngUri(chart, {}, (uri) => window.dataURIs.png = uri);
+            window.svgAsDataUri(chart, {}, (uri) => window.dataURIs.svg = uri);
         });
 
     const dataURIs = yield night
-        .wait('#datauri-png')
-        .wait('#datauri-svg')
+        .wait(() => window.dataURIs.png && window.dataURIs.svg, 100)
         .evaluate(() => window.dataURIs);
 
     yield night.end();
