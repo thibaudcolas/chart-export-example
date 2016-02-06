@@ -5,7 +5,7 @@ var saveSvgAsPng = require('save-svg-as-png');
 var dataUriToBuffer = require('data-uri-to-buffer');
 var svg2png = require('svg2png');
 
-var render = require('./render');
+var chart = require('./chart');
 
 global.document = jsdom.jsdom('<html><body><svg class="chart" viewBox="0 0 420 300"></svg></body></html>');
 global.window = global.document.defaultView;
@@ -13,9 +13,7 @@ global.Image = global.window.Image;
 
 var numbers = [ 4, 8, 15, 16, 23, 42 ];
 
-var SOME_EXIT_CONDITION = false;
-
-render(document.querySelector('.chart'), numbers);
+chart(document.querySelector('.chart'), numbers);
 
 saveSvgAsPng.svgAsDataUri(document.querySelector('.chart'), {}, function(uri) {
     console.log(uri);
