@@ -17,7 +17,7 @@ vo(function* () {
       };
     });
   console.log(clip);
-  yield nightmare.screenshot('./test.png', clip);
+  yield nightmare.screenshot('./test-nightmare.png', clip);
 
   const svgURI = yield nightmare.evaluate(function () {
       var rect = document.querySelector('.chart').getBoundingClientRect();
@@ -141,5 +141,5 @@ vo(function* () {
   var dataUriToBuffer = require('data-uri-to-buffer');
 
   var b = dataUriToBuffer(result);
-  fs.writeFileSync('test.svg', b);
+  fs.writeFileSync('test-nightmare.svg', b);
 });

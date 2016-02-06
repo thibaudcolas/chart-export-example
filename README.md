@@ -7,7 +7,7 @@ chart-export-example
 
 http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 
-![Example export](test.png)
+![Example export](test-nightmare.png)
 
 ## Relevant links
 
