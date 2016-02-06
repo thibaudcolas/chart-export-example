@@ -6,23 +6,31 @@ var dataUriToBuffer = require('data-uri-to-buffer');
 
 var chart = require('./chart');
 
-global.document = jsdom.jsdom('<html><head><link rel="stylesheet" href="chart.css" /></head><body><svg class="chart"></svg></body></html>');
-global.window = global.document.defaultView;
-global.Image = global.window.Image;
+jsdom.env({
+    html: '<html><head><link rel="stylesheet" href="http://localhost:1337/chart.css" /></head><body><svg class="chart"></svg></body></html>',
+    features: {
+        FetchExternalResources: ['link'],
+        ProcessExternalResources: true,
+    },
+    done: function(err, window) {
+        global.window = window;
+        global.document = window.document;
 
-global.Canvas = require('canvas');
+        var numbers = [ 4, 8, 15, 16, 23, 42 ];
 
-var numbers = [ 4, 8, 15, 16, 23, 42 ];
+        chart(document.querySelector('.chart'), numbers);
 
-chart(document.querySelector('.chart'), numbers);
+        saveSvgAsPng.svgAsDataUri(document.querySelector('.chart'), {}, function(uri) {
+            var buffer = dataUriToBuffer(uri);
 
-saveSvgAsPng.svgAsDataUri(document.querySelector('.chart'), {}, function(uri) {
-    var buffer = dataUriToBuffer(uri);
+            console.log(uri);
+            console.log(buffer.toString());
 
-    console.log(uri);
-    console.log(buffer.toString());
+            fs.writeFile('test-jsdom.svg', buffer, function() {
+                console.log('wrote test-jsdom.svg');
+            });
+        });
 
-    fs.writeFile('test-jsdom.svg', buffer, function() {
-        console.log('wrote test-jsdom.svg');
-    });
-});
+        window.close();
+    },
+})
