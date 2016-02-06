@@ -10,7 +10,7 @@ vo(function*() {
     yield night
         .goto('http://bl.ocks.org/mbostock/raw/7341714/')
         .inject('js', saveSvgAsPngPath)
-        .wait('.chart g')
+        .wait(() => document.querySelector('.chart').innerHTML, 100)
         .evaluate(() => {
             const chart = document.querySelector('.chart');
 
