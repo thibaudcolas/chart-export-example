@@ -22,6 +22,14 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 
 ## Last findings
 
+## With Nightmare / Electron
+
+> TL;DR; More heavyweight than jsdom but works flawlessly.
+
+- Point the browser to the page with the chart to export.
+- Inject `saveSvgAsPng` onto the page.
+- Get the SVG & PNG data URIs.
+
 ## With jsdom
 
 >TL;DR; SVG exports work, PNG exports are more complicated.
@@ -32,8 +40,3 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 - This issue can apparently be overcome by using `fabric` (it has a SVG to canvas parser), however Fabric doesn't support Node 4+ yet (compilation errors). This means that it would be necessary to step back to jsdom 3. I haven't tried this yet.
 
 Another option is to use something like `svg2png`, but this relies on `phantom`. It seems a bit weird to use both jsdom and phantom.
-
-## With Nightmare / Electron
-
-- Client-side: saveSvgAsPng, except IE (https://github.com/Quartz/Chartbuilder/blob/master/src/js/components/ChartExport.jsx)
-- Server-side: Electron (Nightmare) + saveSvgAsPng? Client-side code + Nightmare one-liner to trigger generation & retrieve URI
