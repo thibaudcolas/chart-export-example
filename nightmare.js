@@ -6,7 +6,7 @@ vo(function* () {
   var nightmare = Nightmare({ show: true });
   var clip = yield nightmare
     .goto('http://bl.ocks.org/mbostock/raw/7341714/')
-    .wait('.chart')
+    .wait('.chart g')
     .evaluate(function () {
       var rect = document.querySelector('.chart').getBoundingClientRect();
 
