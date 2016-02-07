@@ -20,8 +20,6 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 - http://fabricjs.com/
 - https://www.smashingmagazine.com/2014/05/love-generating-svg-javascript-move-to-server/
 
-## Last findings
-
 ## With Nightmare / Electron
 
 > TL;DR; More heavyweight than jsdom but works flawlessly.
@@ -40,3 +38,10 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 - This issue can apparently be overcome by using `fabric` (it has a SVG to canvas parser), however Fabric doesn't support Node 4+ yet (compilation errors). This means that it would be necessary to step back to jsdom 3. I haven't tried this yet.
 
 Another option is to use something like `svg2png`, but this relies on `phantom`. It seems a bit weird to use both jsdom and phantom.
+
+## Caveats
+
+- The rendering is handled by [Electron](http://electron.atom.io/), if something isn't supported there isn't much to do about it.
+- The chart to SVG & SVG to PNG features are handled by [saveSvgAsPng](https://github.com/exupero/saveSvgAsPng). This codebase is easier to contribute to.
+- saveSvgAsPng doesn't support inlining of font face definitions ([yet](https://github.com/exupero/saveSvgAsPng/pull/29)).
+- If the chart is styled with ancestor selectors that are outside of it, the selectors need to be re-mapped when they are inlined.
