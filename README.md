@@ -19,10 +19,11 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes:
 - https://github.com/Automattic/node-canvas
 - http://fabricjs.com/
 - https://www.smashingmagazine.com/2014/05/love-generating-svg-javascript-move-to-server/
+- https://d3export.housegordon.org/
 
 ## With Nightmare / Electron
 
-> TL;DR; More heavyweight than jsdom but works flawlessly.
+> TL;DR; More heavyweight than jsdom but works flawlessly. Uses http://www.chromium.org/developers/content-module.
 
 - Point the browser to the page with the chart to export.
 - Inject `saveSvgAsPng` onto the page.
