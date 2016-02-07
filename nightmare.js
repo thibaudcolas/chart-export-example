@@ -12,7 +12,7 @@ vo(function*() {
     const night = nightmare({ show: false });
     const saveSvgAsPngPath = require.resolve('save-svg-as-png');
 
-    yield night
+    const dataURIs = yield night
         .goto(config.url)
         .inject('js', saveSvgAsPngPath)
         .wait((selector) => {
@@ -27,9 +27,7 @@ vo(function*() {
 
             window.svgAsPngUri(chart, {}, uri => window.dataURIs.png = uri);
             window.svgAsDataUri(chart, {}, uri => window.dataURIs.svg = uri);
-        }, config.selector);
-
-    const dataURIs = yield night
+        }, config.selector)
         .wait(() => window.dataURIs.png && window.dataURIs.svg)
         .evaluate(() => window.dataURIs);
 
