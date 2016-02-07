@@ -9,13 +9,17 @@ const config = {
 };
 
 vo(function*() {
-    const night = nightmare({ show: true });
+    const night = nightmare({ show: false });
     const saveSvgAsPngPath = require.resolve('save-svg-as-png');
 
     yield night
         .goto(config.url)
         .inject('js', saveSvgAsPngPath)
-        .wait(selector => document.querySelector(selector).innerHTML, config.selector)
+        .wait((selector) => {
+            const chart = document.querySelector(selector);
+
+            return chart && chart.innerHTML;
+        }, config.selector)
         .evaluate((selector) => {
             const chart = document.querySelector(selector);
 
