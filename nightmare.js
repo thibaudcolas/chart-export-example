@@ -3,16 +3,17 @@ const vo = require('vo');
 const fs = require('fs');
 const dataUriToBuffer = require('data-uri-to-buffer');
 
+const saveSvgAsPngPath = require.resolve('save-svg-as-png');
+
 const config = {
     url: 'http://bl.ocks.org/mbostock/raw/7341714/',
     selector: '.chart',
 };
 
-vo(function*() {
-    const night = nightmare({ show: false });
-    const saveSvgAsPngPath = require.resolve('save-svg-as-png');
+const night = nightmare({ show: false });
 
-    const dataURIs = yield night
+vo(function*() {
+    yield night
         .goto(config.url)
         .inject('js', saveSvgAsPngPath)
         .wait((selector) => {
@@ -29,9 +30,10 @@ vo(function*() {
             window.svgAsDataUri(chart, {}, uri => window.dataURIs.svg = uri);
         }, config.selector)
         .wait(() => window.dataURIs.png && window.dataURIs.svg)
-        .evaluate(() => window.dataURIs);
 
-    yield night.end();
+    const dataURIs = yield night
+        .evaluate(() => window.dataURIs)
+        .end();
 
     return dataURIs;
 })((err, dataURIs) => {
