@@ -3,25 +3,30 @@ const vo = require('vo');
 const fs = require('fs');
 const dataUriToBuffer = require('data-uri-to-buffer');
 
+const config = {
+    url: 'http://bl.ocks.org/mbostock/raw/7341714/',
+    selector: '.chart',
+};
+
 vo(function*() {
-    const night = nightmare({ show: false });
+    const night = nightmare({ show: true });
     const saveSvgAsPngPath = require.resolve('save-svg-as-png');
 
     yield night
-        .goto('http://bl.ocks.org/mbostock/raw/7341714/')
+        .goto(config.url)
         .inject('js', saveSvgAsPngPath)
-        .wait(() => document.querySelector('.chart').innerHTML, 100)
-        .evaluate(() => {
-            const chart = document.querySelector('.chart');
+        .wait(selector => document.querySelector(selector).innerHTML, config.selector)
+        .evaluate((selector) => {
+            const chart = document.querySelector(selector);
 
             window.dataURIs = {};
 
-            window.svgAsPngUri(chart, {}, (uri) => window.dataURIs.png = uri);
-            window.svgAsDataUri(chart, {}, (uri) => window.dataURIs.svg = uri);
-        });
+            window.svgAsPngUri(chart, {}, uri => window.dataURIs.png = uri);
+            window.svgAsDataUri(chart, {}, uri => window.dataURIs.svg = uri);
+        }, config.selector);
 
     const dataURIs = yield night
-        .wait(() => window.dataURIs.png && window.dataURIs.svg, 100)
+        .wait(() => window.dataURIs.png && window.dataURIs.svg)
         .evaluate(() => window.dataURIs);
 
     yield night.end();
