@@ -29,7 +29,7 @@ vo(function*() {
             window.svgAsPngUri(chart, {}, uri => window.dataURIs.png = uri);
             window.svgAsDataUri(chart, {}, uri => window.dataURIs.svg = uri);
         }, config.selector)
-        .wait(() => window.dataURIs.png && window.dataURIs.svg)
+        .wait(() => window.dataURIs.png && window.dataURIs.svg);
 
     const dataURIs = yield night
         .evaluate(() => window.dataURIs)
