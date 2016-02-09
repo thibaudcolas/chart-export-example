@@ -11,7 +11,7 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes (PNG and SVG):
 
 ![Example export PNG](test-nightmare.png)
 
-![Example export SVG](test-nightmare.svg)
+[SVG version](test-nightmare.svg)
 
 ## Relevant links
 
