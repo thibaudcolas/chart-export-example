@@ -3,11 +3,15 @@ chart-export-example
 
 > An example of using various Node tools to create an SVG / PNG export from a D3 SVG+CSS chart
 
+/!\ The most effective approach has been packaged into a library, available at https://github.com/ThibWeb/export-svg-chart.
+
 ## Example export
 
-http://bl.ocks.org/mbostock/raw/7341714/ becomes:
+http://bl.ocks.org/mbostock/raw/7341714/ becomes (PNG and SVG):
 
-![Example export](test-nightmare.png)
+![Example export PNG](test-nightmare.png)
+
+![Example export SVG](test-nightmare.svg)
 
 ## Relevant links
 
