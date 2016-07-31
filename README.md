@@ -24,6 +24,7 @@ http://bl.ocks.org/mbostock/raw/7341714/ becomes (PNG and SVG):
 - http://fabricjs.com/
 - https://www.smashingmagazine.com/2014/05/love-generating-svg-javascript-move-to-server/
 - https://d3export.housegordon.org/
+- https://github.com/Baremetrics/barepng
 
 ## With Nightmare / Electron
 
