@@ -15,7 +15,7 @@
     "data-uri-to-buffer": "0.0.4",
     "jsdom": "^8.0.2",
     "nightmare": "^2.1.4",
-    "save-svg-as-png": "thibweb/saveSvgAsPng#feature/jsdom-support",
+    "save-svg-as-png": "thibaudcolas/saveSvgAsPng#feature/jsdom-support",
     "svg2png": "^3.0.0",
     "vo": "^1.0.3"
   }
